@@ -1,7 +1,9 @@
-<?php
-
-foreach ($Soal as $row_soal) {
-	echo $row_soal -> pertanyaan;
-	echo " \r\n";
-}
-?>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Kuesioner IO</title>
+</head>
+<body>
+<a href="admin/login">admin</a>
+</body>
+</html>

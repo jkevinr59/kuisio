@@ -11,8 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-    
-});
-Route::get('/admin','Admin@index');
+Route::get('/index','Admin@index');
+Route::get('/admin/dashboard','Admin@dashboard');
+Auth::routes();
+Route::post('/admin/login','Admin@attempt_login');
+Route::get('/admin/login', 'Admin@login');
+Route::get('/admin/data','Admin@Soal');
