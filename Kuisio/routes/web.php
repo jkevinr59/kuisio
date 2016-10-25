@@ -17,3 +17,6 @@ Auth::routes();
 Route::post('/admin/login','Admin@attempt_login');
 Route::get('/admin/login', 'Admin@login');
 Route::get('/admin/data','Admin@Soal');
+Route::get('/admin/logout','Admin@logout');
+Route::get('/admin/update','Admin@Update_soal');
+Route::get('/admin/delete','Admin@delete_soal');
