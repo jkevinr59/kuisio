@@ -115,4 +115,12 @@ class Admin extends Controller
     	Auth::logout();
     	return redirect()->intended('index');
     }
+    public function table()
+    {
+    	$data1 = Soal::where('kode_mata_kuliah','=',1)->count();
+    	$data2 = Soal::where('kode_mata_kuliah','=',2)->count();
+    	$data3 = Soal::where('kode_mata_kuliah','=',3)->count();
+		$data4 = Soal::where('kode_mata_kuliah','=',0)->count();    	
+    	return response()->json(['data1' => $data1,'data2' => $data2,'data3' => $data3,'data4' => $data4]);
+    }
 }

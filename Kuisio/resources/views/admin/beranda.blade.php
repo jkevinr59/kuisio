@@ -13,69 +13,23 @@
 
             <!-- /.row -->
             <div class="row">
-            	<!-- /.col-lg-6 -->
-                <div class="col-lg-6">
+            	<!-- /.col-lg-7 -->
+                <div class="col-lg-7">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Kategori soal AEC
+                            Statistik Soal
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                            <div id="kategori-soal-AEC"></div>
+                            <div id="statistik-soal"></div>
                         </div>
                         <!-- /.panel-body -->
                     </div>
                     <!-- /.panel -->
                 </div>
-                <!-- /.col-lg-6 -->
+    
 
-                <!-- /.col-lg-6 -->
-                <div class="col-lg-6">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Kategori Soal IQF
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <div id="kategori-soal-IQF"></div>
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                </div>
-                <!-- /.col-lg-6 -->   
-
-                <!-- /.col-lg-6 -->
-                <div class="col-lg-6">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Kategori Soal MRA
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <div id="kategori-soal-MRA"></div>
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                </div>
-                <!-- /.col-lg-6 -->   
-
-                <!-- /.col-lg-6 -->
-                <div class="col-lg-6">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Kategori Soal Umum
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <div id="kategori-soal-umum"></div>
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                </div>
-                <!-- /.col-lg-6 -->      
+                <!-- /.col-lg-7 -->      
             </div>
             <!-- /.row -->
         </div>

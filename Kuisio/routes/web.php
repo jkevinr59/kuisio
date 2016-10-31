@@ -20,3 +20,4 @@ Route::get('/admin/data','Admin@Soal');
 Route::get('/admin/logout','Admin@logout');
 Route::get('/admin/update','Admin@Update_soal');
 Route::get('/admin/delete','Admin@delete_soal');
+Route::get('/admin/datatable','Admin@table');
