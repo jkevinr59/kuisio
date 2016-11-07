@@ -45,7 +45,7 @@
                         <a href='{!! url('/manajemensoal'); !!}'><i class="fa fa-edit fa-fw"></i> Manajemen Soal <span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href='{!! url('/unggahsoal'); !!}'>Unggah Soal</a>
+                                <a href='{!! url('/admin/unggahsoal'); !!}'>Unggah Soal</a>
                             </li>
                             <li>
                                 <a href='data'>Daftar Soal</a>

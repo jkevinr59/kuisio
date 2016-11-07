@@ -19,9 +19,9 @@ class Admin extends Controller
     	return view('admin/beranda');
     }
 
-    public function form_soal()
+    public function create()
     {
-    	return view('admin/create');
+    	return view('admin/tambahsoal');
     }
     public function create_soal(Request $request)
     {
@@ -93,9 +93,85 @@ class Admin extends Controller
     	$output['data'] = $data;
     	return view('admin/ubahsoal',$output);
     }
+    public function simpan(Request $request)
+    {
+    	if($request->kategori==0)
+    	{
+    		$bagian="umum";
+    	}
+    	else if($request->kategori==1)
+    	{
+    		$bagian="AEC";
+    	}
+    	else if($request->kategori==2)
+    	{
+    		$bagian="IQF";
+    	}
+    	else if($request->kategori==3)
+    	{
+    		$bagian="MRA";
+    	} 
+    	if($request->kode == 0)
+    	{
+    	$item = new Soal();	
+    	}
+    	else
+    	{
+    	$item = Soal::find($request->kode);
+    	}   	
+    	$item->bagian= $bagian;
+    	$item->pertanyaan = $request->pertanyaan;
+    	if($request->jenis == 1)
+    	{
+    	$item->jawab_a = $request->opsiA;
+    	$item->jawab_b = $request->opsiB;
+    	$item->jawab_c = $request->opsiC;
+    	$item->jawab_d = $request->opsiD;
+    	$item->jawab_e = $request->opsiE;
+    	}
+    	else if($request->jenis == 2)
+    	{
+    	$item->jawab_a = "Benar";
+    	$item->jawab_b = "Salah";
+    	$item->jawab_c = "";
+    	$item->jawab_d = "";
+    	$item->jawab_e = "";    	
+    	}
+    	else
+    	{
+    	$item->jawab_a = "pernyataan benar, alasan benar, dan keduanya menunjukkan hubungan sebab akibat";
+    	$item->jawab_b = "pernyataan benar, alasan benar, tetapi keduanya tidak menunjukkan hubungan sebab akibat";
+    	$item->jawab_c = "pernyataan benar, alasan salah";
+    	$item->jawab_d = "pernyataan salah, alasan benar";
+    	$item->jawab_e = "pernyataan dan alasan salah";
+    	}
+    	$item->benar = $request->kunci_jawaban;
+    	$item->kode_jenis_soal = $request->jenis;
+    	$item->kode_mata_kuliah = $request->kategori;
+    	$item->timestamps = false;
+    	$item->save();
+    	if($request->kode == 0)
+    	{
+    		return view('admin/tambahsoal');
+    	}
+    	else
+    	{
+   		$output['soal_list'] = Soal::all();
+    	foreach($output['soal_list'] as $value)
+    	{
+    		if($value->kode_jenis_soal == 1)
+    		$value->jenis_soal = "Pilihan Ganda";
+    		else if($value->kode_jenis_soal == 2)
+    		{
+    			$value->jenis_soal = "Benar-Salah";
+    		}
+    	}
+    	return view('admin/daftarsoal',$output);
+    	}     	
+    }
     public function delete_soal(Request $request)
     {
-    	$kode = $request->kode_soal;
+    	$kode = $request->kode;
     	$data = Soal::find($kode);
     	$data->delete();
    		$output['soal_list'] = Soal::all();
@@ -108,7 +184,7 @@ class Admin extends Controller
     			$value->jenis_soal = "Benar-Salah";
     		}
     	}
-    	return view('admin/manajemensoal',$output);     	
+    	return view('admin/daftarsoal',$output);     	
     }
     public function logout()
     {

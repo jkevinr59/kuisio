@@ -9,6 +9,17 @@
         </div>
         <!-- /.col-lg-12 -->
     </div>
+                        <h3>Petunjuk:Untuk jenis selain pilihan ganda, tidak perlu mengisi bagian jawaban</h3>
+                        <h3>Untuk kunci jawaban, gunakan patokan berikut</h3>
+                        <h4>Benar-Salah:</h4>
+                        <h4>Pilihan A:Benar</h4>
+                        <h4>Pilihan B:Salah</h4>
+                        <h4>Sebab-Akibat:</h4>
+                        <h4>Pilihan A:pernyataan benar, alasan benar, dan keduanya menunjukkan hubungan sebab akibat</h4>
+                        <h4>Pilihan B:pernyataan benar, alasan benar, tetapi keduanya tidak menunjukkan hubungan sebab akibat</h4>
+                        <h4>Pilihan C:pernyataan benar, alasan salah</h4>
+                        <h4>Pilihan D:pernyataan salah, alasan benar</h4>                        
+                        <h4>Pilihan E:pernyataan dan alasan salah</h4>
 <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
@@ -18,39 +29,57 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <form role="form" method="post">
+                                    <form action='{!! url('/admin/simpan'); !!}' role="form" method="post">
+                                                                    {{csrf_field()}}
+                                        <input type="hidden" name="kode" value= 0>                           
                                         <div class="form-group">
                                             <label>Pertanyaan</label>
-                                            <textarea type="text"class="form-control" name="tambah_isi_soal" id="tambah_isi_soal" rows="3"></textarea>
+                                            <textarea type="text"class="form-control" name="pertanyaan" id="tambah_isi_soal" rows="3"></textarea>
                                         </div>
 
                                         <div class="form-group">
                                             <label>Kategori Soal</label>
-                                            <select class="form-control" name="tambah_kategori_soal" id="tambah_kategori_soal">
-                                                <option>Umum</option>
-                                                <option>AEC</option>
-                                                <option>IQF</option>
-                                                <option>MRA</option>
+                                            <select class="form-control" name="kategori" id="tambah_kategori_soal">
+                                                <option value="0">Umum</option>
+                                                <option value="1">AEC</option>
+                                                <option value="2">IQF</option>
+                                                <option value="3">MRA</option>
                                             </select>
                                         </div>
 
                                         <div class="form-group">
                                             <label>Jenis Soal</label>
-                                            <select class="form-control" name="tambah_jenis_soal" id="tambah_jenis_soal">
-                                                <option>Pilihan Ganda</option>
-                                                <option>Sebab - Akibat</option>
-                                                <option>Benar - Salah</option>
+                                            <select class="form-control" name="jenis" id="tambah_jenis_soal">
+                                                <option value="1">Pilihan Ganda</option>
+                                                <option value="2">Sebab - Akibat</option>
+                                                <option value="3">Benar - Salah</option>
                                             </select>
                                         </div>
 
                                         <div class="form-group">
-                                            <label>Jawaban</label>
-                                            <textarea type="text"class="form-control" name="tambah_jawaban" id="tambah_jawaban" rows="3"></textarea>
+                                            <label>Pilihan A</label>
+                                            <textarea type="text"class="form-control" name="opsiA" id="tambah_jawaban" rows="2"></textarea>
                                         </div>
+                                        <div class="form-group">
+                                            <label>Pilihan B</label>
+                                            <textarea type="text"class="form-control" name="opsiB" id="tambah_jawaban" rows="2"></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Pilihan C</label>
+                                            <textarea type="text"class="form-control" name="opsiC" id="tambah_jawaban" rows="2"></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Pilihan D</label>
+                                            <textarea type="text"class="form-control" name="opsiD" id="tambah_jawaban" rows="2"></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Pilihan E</label>
+                                            <textarea type="text"class="form-control" name="opsiE" id="tambah_jawaban" rows="2"></textarea>
+                                        </div>                                                                                                                                                                
 
                                         <div class="form-group">
                                             <label>Kunci Jawaban</label>
-                                            <select class="form-control" name="tambah_kunci_jawaban" id="tambah_kunci_jawaban">
+                                            <select class="form-control" name="kunci_jawaban" id="tambah_kunci_jawaban">
                                                 <option>A</option>
                                                 <option>B</option>
                                                 <option>C</option>

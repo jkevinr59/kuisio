@@ -78,6 +78,7 @@ return [
             'schema' => 'public',
             'sslmode' => 'prefer',
         ],
+        /*
         'sqlsrv' => [
             'driver' => 'sqlsrv',
             'host' => '10.199.15.20',
@@ -87,6 +88,19 @@ return [
             'password' => 'clitdobol.',
 
         ],
+        */
+        'sqlsrv' => [
+            'driver' => 'sqlsrv',
+            'host' => '127.0.0.1',
+            //'host' => '10.199.15.20',
+            'port' => '1433',
+            'database' => 'kuisio',
+            //'username' => 'gendull',
+            //'password' => 'clitdobol.',
+            'username' => 'Black',
+            'password' => 'black',
+
+        ],       
     ],
 
     /*

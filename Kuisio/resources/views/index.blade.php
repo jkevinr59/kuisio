@@ -42,7 +42,7 @@
 						</div>
 						<div align="center">
 							<button onClick="parent.location='{!! url('admin/login'); !!}'" class="btn btn-lg btn-primary">Admin</button>
-							<button onClick="parent.location='{!! url('/kuesioner'); !!}'" class="btn btn-lg btn-primary">User</button>
+							<button onClick="parent.location='{!! url('user/quiz'); !!}'" class="btn btn-lg btn-primary">User</button>
 						</div>
 					</div>
 				<div class="mastfoot">

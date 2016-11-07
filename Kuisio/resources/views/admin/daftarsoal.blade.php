@@ -22,7 +22,7 @@
                 <div class="panel-body">
                     <table width="100%" class="table table-striped table-bordered table-hover" id="tabel-soal">
                         <p> <b> Untuk menambahkan soal, pengguna dapat menekan tombol tambah soal !! </b> </p>
-                        <a href='{!! url('/tambahsoal'); !!}'> <button type="submit" class="btn btn-primary" name="tombol_tambah_" value="tombol_tambah" > Tambah Soal </button> </a> <br> <br>
+                        <a href='{!! url('admin/tambahsoal'); !!}'> <button type="submit" class="btn btn-primary" name="tombol_tambah_" value="tombol_tambah" > Tambah Soal </button> </a> <br> <br>
                         <thead>
                             <tr>
                                 <th>ID Soal</th>
@@ -52,12 +52,18 @@
                                 <td align="center"><?php echo $value['pertanyaan'];?></td>
                                 <td><?php echo $value['kategori_soal'];?></td>
                                 <td>
-                                <form action="update" method ="GET"> 
+                                <form action="update" method ="POST"> 
+                                                                {{csrf_field()}}
                                 <input type="hidden" name="kode" value= <?php echo $value->kode?>>
                                 <button type="submit" name="tombol_ubah" id="tombol_ubah" value="tombol_ubah" class="btn btn-success"> Ubah Soal </button>   
                                 </form>
                                 </td>
-                                <td> <button name="tombol_hapus" id="tombol_hapus" value="tombol_ubah" class="btn btn-warning" >Hapus Soal</button> </td>
+                                <td>
+                                <form action="delete" method ="POST"> 
+                                                                {{csrf_field()}}
+                                <input type="hidden" name="kode" value= <?php echo $value->kode?>>
+                                <button name="tombol_hapus" id="tombol_hapus" value="tombol_ubah" class="btn btn-warning" >Hapus Soal</button> 
+                                </form></td>
                             </tr>
                             <?php
                             }?>
