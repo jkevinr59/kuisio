@@ -196,7 +196,9 @@
                 </div>
                 <div class="panel-body">
                 <button type="submit" class="btn btn-primary" name="submit" value="submit" href='{!! url('/manajemensoal'); !!}'> Simpan </button>
-                </div>                
+                </div> 
+                </form>
+                               
             </div>
 		</div>
 

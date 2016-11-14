@@ -51,8 +51,8 @@
                                             <label>Jenis Soal</label>
                                             <select class="form-control" name="jenis" id="tambah_jenis_soal">
                                                 <option value="1">Pilihan Ganda</option>
-                                                <option value="2">Sebab - Akibat</option>
-                                                <option value="3">Benar - Salah</option>
+                                                <option value="2">Benar - Salah</option>
+                                                <option value="3">Sebab - Akibat</option>                                                
                                             </select>
                                         </div>
 

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Soal;
 use App\Users;
+use Maatwebsite\Excel\Facades\Excel;
 class Admin extends Controller
 {
     public function index()
@@ -51,7 +52,7 @@ class Admin extends Controller
     			return redirect()->intended('admin/dashboard');
     		}
     		else
-    			redirect()->intended('index');
+    			return redirect()->intended('admin/login');
 
 
     }
@@ -64,11 +65,11 @@ class Admin extends Controller
     	{
     		if($value->kode_mata_kuliah == 1)
     		$value->kategori_soal = "AEC";
-    		else if($value->kode_jenis_soal == 2)
+    		else if($value->kode_mata_kuliah == 2)
     		{
     			$value->kategori_soal = "IQF";
     		}
-    		else if($value->kode_jenis_soal == 3)
+    		else if($value->kode_mata_kuliah == 3)
     		{
     			$value->kategori_soal = "MRA";
     		}
@@ -81,8 +82,7 @@ class Admin extends Controller
     	}
     	else
     	{
-    		$output['Soal'] = 'anda belum login';
-    		return view('admin/read',$output);
+    		return redirect()->intended('admin/login');
     	}	
     }
 
@@ -95,22 +95,12 @@ class Admin extends Controller
     }
     public function simpan(Request $request)
     {
-    	if($request->kategori==0)
-    	{
-    		$bagian="umum";
-    	}
-    	else if($request->kategori==1)
-    	{
-    		$bagian="AEC";
-    	}
-    	else if($request->kategori==2)
-    	{
-    		$bagian="IQF";
-    	}
-    	else if($request->kategori==3)
-    	{
-    		$bagian="MRA";
-    	} 
+    	$kategori[0]="umum";
+    	$kategori[1]="AEC";
+    	$kategori[2]="IQF";
+    	$kategori[3]="MRA";
+		 $request_kategori=$request->kategori;
+
     	if($request->kode == 0)
     	{
     	$item = new Soal();	
@@ -119,7 +109,7 @@ class Admin extends Controller
     	{
     	$item = Soal::find($request->kode);
     	}   	
-    	$item->bagian= $bagian;
+    	$item->bagian= $kategori[$request_kategori];
     	$item->pertanyaan = $request->pertanyaan;
     	if($request->jenis == 1)
     	{
@@ -198,5 +188,54 @@ class Admin extends Controller
     	$data3 = Soal::where('kode_mata_kuliah','=',3)->count();
 		$data4 = Soal::where('kode_mata_kuliah','=',0)->count();    	
     	return response()->json(['data1' => $data1,'data2' => $data2,'data3' => $data3,'data4' => $data4]);
+    }
+
+    public function download_template() //fungsi download template disediakan di sini
+    {
+    	Excel::create('Template', function($excel){
+            $excel->setTitle('Template_Soal');
+
+            $excel->setCreator('kuisio')->setCompany('International Office ITS');
+
+            $excel->setDescription('Template unggah soal');
+
+            $data = ["Kategori","Pertanyaan","Jawaban A","Jawaban B","Jawaban C","Jawaban D","Jawaban E","Kunci Jawaban","Jenis Soal"];
+            $excel->sheet("Template", function($sheet) use($data)
+            {
+            	$sheet->setOrientation('landscape');
+            	$sheet->fromArray($data, NULL, 'A1');
+            });
+
+            $data2 = array(
+            	array("contoh pengisian tabel soal"),
+            	array("Petunjuk Pengisian Kode soal : Isilah kolom kode jenis soal dengan kode nomor soal di bawah ini"),
+            	array("Kode","Jenis Soal"),
+            	array(1,"Pilihan Ganda"),
+            	array(2,"Benar Salah"),
+            	array(3,"Sebab Akibat"),
+            	array(""),
+            	array("Petunjuk Pengisian Kode kategori : Isilah kolom kode jenis soal dengan kode nomor soal di bawah ini"),
+            	array("Kode","Kategori"),
+            	array(1,"AEC"),
+            	array(2,"IQF"),
+            	array(3,"MRA"),
+            	array("Kategori","Pertanyaan","Jawaban A","Jawaban B","Jawaban C","Jawaban D","Jawaban E","Kunci Jawaban","Jenis Soal"),
+            	array("1","Apa Kepanjangan AEC","A","B","C","D","E","B","1"),
+            	);
+
+            $excel->sheet("Read Me", function($sheet) use($data2)
+            {
+            	$sheet->setOrientation('landscape');
+            	$sheet->createSheetFromArray($data2,NULL, 'A1');
+            	$sheet->mergeCells('A1:C1');
+            	$sheet->mergeCells('A2:I2');
+
+            });            
+
+        })->download('xls');
+    }
+    public function unggah()
+    {
+    	return view('admin/unggahsoal');
     }
 }

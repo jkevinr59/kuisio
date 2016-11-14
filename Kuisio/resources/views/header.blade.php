@@ -3,7 +3,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="author" content="">
-
+<link rel="shortcut icon" href="{{ url('assets/lama/favicon.ico') }}" />
 <title>Kuesioner International Office</title>
 
 <!-- Bootstrap Core CSS -->
@@ -43,9 +43,9 @@
                     </li>
                     <li>
                         <a href='{!! url('/manajemensoal'); !!}'><i class="fa fa-edit fa-fw"></i> Manajemen Soal <span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
+                        <ul class="nav nav-second-level">                            
                             <li>
-                                <a href='{!! url('/admin/unggahsoal'); !!}'>Unggah Soal</a>
+                                <a href='{!! url('/admin/unggah'); !!}'>Unggah Soal</a>
                             </li>
                             <li>
                                 <a href='data'>Daftar Soal</a>

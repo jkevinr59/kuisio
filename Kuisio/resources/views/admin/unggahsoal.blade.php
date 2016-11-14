@@ -21,7 +21,7 @@
                 <div class="panel-body">
                     <div class="form-group">
                         <label> <h4> Unggah File Daftar Soal </h4></label>
-                        <p><b>PERHATIAN!!! </b>Sebelum mengunggah file pastikan file yang akan diunggah sesuai dengan <a href="unduh.php?action=soal">template</a> yang disediakan.</p>
+                        <p><b>PERHATIAN!!! </b>Sebelum mengunggah file pastikan file yang akan diunggah sesuai dengan <a href='{!! url('/admin/download'); !!}'>template</a> yang disediakan.</p>
                         <input type="file" id="unggah_file" name = "unggah_file" value="unggah_file">
                         <p class="help-block">*File yang diunggah harus berekstensi .xls atau .xlsx</p>
                         <button type="submit" class="btn btn-primary" name="unggah" value="unggah" href='{!! url('/manajemensoal'); !!}'> Unggah </button>
@@ -52,21 +52,23 @@
                             </tr>
                         </tbody>
 
+
 <!--
                         <tbody>
-                            <?php $i=1; foreach ($riwayat_list as $value) {?>
+                            <?php 
+                           //$i=1; foreach ($riwayat_list as $value) {?>
                             <tr>
-                                <td align="center"><?php echo $i++;?></td>
-                                <td><?php echo $value['username'];?></td>
-                                <td align="center"><?php echo $value['aksi'];?></td>
-                                <td><?php echo $value['tabel_tujuan'];?></td>
-                                <td><?php echo $value['matakuliah'];?></td>
-                                <td><?php echo $value['totaldata'];?></td>
-                                <td><?php echo $value['waktu'];?></td>
+                                <td align="center"><?php //echo $i++;?></td>
+                                <td><?php //echo $value['username'];?></td>
+                                <td align="center"><?//php echo $value['aksi'];?></td>
+                                <td><?php //echo $value['tabel_tujuan'];?></td>
+                                <td><?php //echo $value['matakuliah'];?></td>
+                                <td><?php //echo $value['totaldata'];?></td>
+                                <td><?php //echo $value['waktu'];?></td>
                                 
                             </tr>
                             <?php
-                            }?>
+                           // }?>
                         </tbody>
 -->
 

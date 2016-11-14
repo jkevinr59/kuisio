@@ -27,3 +27,5 @@ Route::get('/user/quiz','UserController@kuesioner');
 Route::post('/user/hasil','UserController@score');
 Route::get('/user/hasil','UserController@score');
 Route::get('/user/home','UserController@index');
+Route::get('/admin/download','Admin@download_template');
+Route::get('/admin/unggah','Admin@unggah');
