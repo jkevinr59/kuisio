@@ -222,6 +222,8 @@ class Admin extends Controller
             	array(3,"MRA"),
             	array("Kategori","Pertanyaan","Jawaban A","Jawaban B","Jawaban C","Jawaban D","Jawaban E","Kunci Jawaban","Jenis Soal"),
             	array("1","Apa Kepanjangan AEC","A","B","C","D","E","B","1"),
+                array("2","ASEAN terdiri dari 10 negara","Benar","Salah","","","","A","2"),
+                array("3","Soal Sebab Akibat","pernyataan benar, alasan benar, dan keduanya menunjukkan hubungan sebab akibat","pernyataan benar, alasan benar, tetapi keduanya tidak menunjukkan hubungan sebab akibat","pernyataan benar, alasan salah","pernyataan salah, alasan benar","pernyataan dan alasan salah","B","3"),
             	);
 
             $excel->sheet("Read Me", function($sheet) use($data2)
@@ -230,7 +232,10 @@ class Admin extends Controller
             	$sheet->createSheetFromArray($data2,NULL, 'A1');
             	$sheet->mergeCells('A1:C1');
             	$sheet->mergeCells('A2:I2');
-            	$sheet->mergeCells('A8:I8');
+                $sheet->setWidth(array(
+                'C'     =>  15,
+                'D'     =>  15
+                ));
 
             });            
 
