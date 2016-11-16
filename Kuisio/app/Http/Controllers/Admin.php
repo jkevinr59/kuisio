@@ -159,6 +159,7 @@ class Admin extends Controller
     	return view('admin/daftarsoal',$output);
     	}     	
     }
+
     public function delete_soal(Request $request)
     {
     	$kode = $request->kode;
@@ -229,6 +230,7 @@ class Admin extends Controller
             	$sheet->createSheetFromArray($data2,NULL, 'A1');
             	$sheet->mergeCells('A1:C1');
             	$sheet->mergeCells('A2:I2');
+            	$sheet->mergeCells('A8:I8');
 
             });            
 
@@ -237,5 +239,42 @@ class Admin extends Controller
     public function unggah()
     {
     	return view('admin/unggahsoal');
+    }
+    public function unggahfile(Request $req)
+    {
+
+    	if($req->hasFile('unggah_file'))
+    	{	
+    		$exceltable = Excel::selectSheets('Template')->load($req->file('unggah_file'),function($reader)
+    		{
+    			$reader->get();
+    		})->get();
+            $status_string="";
+            $kategori[0]="umum";
+            $kategori[1]="AEC";
+            $kategori[2]="IQF";
+            $kategori[3]="MRA";
+            foreach ($exceltable as $key => $value) {
+                $item = new Soal();
+                $item->bagian = $kategori[$value->kategori];
+                $item->pertanyaan = $value->pertanyaan;
+                $item->benar = $value->kunci_jawaban;
+                $item->kode_jenis_soal = $value->jenis_soal;
+                $item->kode_mata_kuliah = $value->kategori;
+                $item->jawab_a = $value->jawaban_a;
+                $item->jawab_b = $value->jawaban_b;
+                $item->jawab_c = $value->jawaban_c;
+                $item->jawab_d = $value->jawaban_d;
+                $item->jawab_e = $value->jawaban_e;
+                $item->timestamps = false; 
+                $item->save();
+             }
+            $data['status'] =$exceltable;
+    	}
+    	else
+    	{
+    		$data['status']= "tidak ada";
+    	}
+    	return view('admin/read',$data);
     }
 }

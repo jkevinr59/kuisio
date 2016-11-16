@@ -22,9 +22,12 @@
                     <div class="form-group">
                         <label> <h4> Unggah File Daftar Soal </h4></label>
                         <p><b>PERHATIAN!!! </b>Sebelum mengunggah file pastikan file yang akan diunggah sesuai dengan <a href='{!! url('/admin/download'); !!}'>template</a> yang disediakan.</p>
+                        <form enctype="multipart/form-data" method="post" role="form" action="unggahfile">
+                        {{csrf_field()}}
                         <input type="file" id="unggah_file" name = "unggah_file" value="unggah_file">
                         <p class="help-block">*File yang diunggah harus berekstensi .xls atau .xlsx</p>
-                        <button type="submit" class="btn btn-primary" name="unggah" value="unggah" href='{!! url('/manajemensoal'); !!}'> Unggah </button>
+                        <button type="submit" class="btn btn-primary" name="unggah" value="unggah"> Unggah </button>
+                        </form>
                     </div>
 
                     <table width="100%" class="table table-striped table-bordered table-hover" id="tabel-riwayat">
