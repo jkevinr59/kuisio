@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 use App\Soal;
+use App\Log;
 use App\Users;
 use Maatwebsite\Excel\Facades\Excel;
 class Admin extends Controller
@@ -17,7 +19,9 @@ class Admin extends Controller
 
     public function dashboard()
     {
-    	return view('admin/beranda');
+    	if(Auth::check())
+        return view('admin/beranda');
+        else return redirect()->intended('http://akademik3.its.ac.id/skem');       
     }
 
     public function create()
@@ -28,7 +32,7 @@ class Admin extends Controller
     {
 
     }
-    
+    /*
     public function login()
     {
     	if (Auth::check())
@@ -41,18 +45,22 @@ class Admin extends Controller
     	}
     	
     }
-    public function attempt_login(Request $request)
+    UNUSED NOW
+    */
+    public function attempt_login(/*Request $request*/)
     {
 
 
-    		$email = $request->email;
-    		$password = $request->password;
-    		if(Auth::attempt(['email' => $email, 'password' => $password],0))
+    		//$email = $request->email;
+    		//$password = $request->password;
+    		$email = "admin@kuisio.com";
+            $password ="admin";
+            if(Auth::attempt(['email' => $email, 'password' => $password],0))
     		{
     			return redirect()->intended('admin/dashboard');
     		}
     		else
-    			return redirect()->intended('admin/login');
+    			return redirect()->intended('http://akademik3.its.ac.id/skem');
 
 
     }
@@ -82,16 +90,24 @@ class Admin extends Controller
     	}
     	else
     	{
-    		return redirect()->intended('admin/login');
+    		return redirect()->intended('http://akademik3.its.ac.id/skem');
     	}	
     }
 
     public function Update_soal(Request $request)
     {
-    	$kode = $request->kode;
-    	$data = Soal::find($kode);
-    	$output['data'] = $data;
-    	return view('admin/ubahsoal',$output);
+        if(Auth::check())
+        {
+            $kode = $request->kode;
+           $data = Soal::find($kode);
+           $output['data'] = $data;
+           return view('admin/ubahsoal',$output);
+        }
+        else
+        {
+            return redirect()->intended('http://akademik3.its.ac.id/skem');
+        }        
+
     }
     public function simpan(Request $request)
     {
@@ -180,7 +196,7 @@ class Admin extends Controller
     public function logout()
     {
     	Auth::logout();
-    	return redirect()->intended('index');
+    	return redirect()->intended('http://akademik3.its.ac.id/skem');
     }
     public function table()
     {
@@ -243,7 +259,9 @@ class Admin extends Controller
     }
     public function unggah()
     {
-    	return view('admin/unggahsoal');
+        $Log = Log::all();
+        $data["table"] = $Log;
+    	return view('admin/unggahsoal',$data);
     }
     public function unggahfile(Request $req)
     {
@@ -275,6 +293,17 @@ class Admin extends Controller
                 $item->save();
              }
             $data['status'] =$exceltable;
+
+            $log = new Log();
+           // $log->kode = Log::all()->count()+3;
+            $log->username = "admin";
+            $log->aksi = "unggah";
+            $log->tabel_tujuan = "tmst_soal";
+            $log->mata_kuliah = "DEFAULT";
+            $log->total = count($exceltable);
+            $log->timestamps = false;
+            $log->waktu = Carbon::now();
+            $log->save();
     	}
     	else
     	{

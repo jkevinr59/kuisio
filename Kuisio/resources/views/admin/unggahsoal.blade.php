@@ -43,6 +43,7 @@
                                 <th>Waktu</th>
                             </tr>
                         </thead>
+<!--
                         <tbody>
                             <tr class="odd gradeX">
                                 <td>1</td>
@@ -54,26 +55,26 @@
                                 <td>Mar 24 2016 08:01:24:000AM</td>
                             </tr>
                         </tbody>
+-->
 
 
-<!--
                         <tbody>
                             <?php 
-                           //$i=1; foreach ($riwayat_list as $value) {?>
+                           $i=1; foreach ($table as $value) {?>
                             <tr>
-                                <td align="center"><?php //echo $i++;?></td>
-                                <td><?php //echo $value['username'];?></td>
-                                <td align="center"><?//php echo $value['aksi'];?></td>
-                                <td><?php //echo $value['tabel_tujuan'];?></td>
-                                <td><?php //echo $value['matakuliah'];?></td>
-                                <td><?php //echo $value['totaldata'];?></td>
-                                <td><?php //echo $value['waktu'];?></td>
+                                <td align="center"><?php echo $i++;?></td>
+                                <td><?php echo $value['username'];?></td>
+                                <td align="center"><?php echo $value['aksi'];?></td>
+                                <td><?php echo $value['tabel_tujuan'];?></td>
+                                <td><?php echo $value['mata_kuliah'];?></td>
+                                <td><?php echo $value['total'];?></td>
+                                <td><?php echo $value['waktu'];?></td>
                                 
                             </tr>
                             <?php
-                           // }?>
+                           }?>
                         </tbody>
--->
+
 
 
                     </table>

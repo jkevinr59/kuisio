@@ -11,12 +11,12 @@
 |
 */
 
-Route::get('/index','Admin@index');
+Route::get('/','Admin@attempt_login');
 Route::get('/admin/dashboard','Admin@dashboard');
 Auth::routes();
 Route::post('/admin/login','Admin@attempt_login');
 Route::post('/admin/simpan','Admin@simpan');
-Route::get('/admin/login', 'Admin@login');
+Route::get('/admin/login', 'Admin@attempt_login');
 Route::get('/admin/data','Admin@Soal');
 Route::get('/admin/logout','Admin@logout');
 Route::post('/admin/update','Admin@Update_soal');
